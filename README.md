@@ -1,10 +1,5 @@
-# C++을 이용한 알고리즘 문제 풀이입니다.
-## 백준 / 프로그래머스 / SW Expert Academy 위주로 풀었습니다.
+# Python을 이용한 알고리즘 문제 풀이입니다.
 
-* 백준
-* 프로그래머스
-* 삼성 SW Expert Academy
+* "이것이 코딩 테스트다 with 파이썬"을 보고 문제풀이 하였습니다.
    
-   
-`https://www.acmicpc.net/user/lcs5382`(이천솔)
-`https://www.acmicpc.net/user/kim031504`(김교민)
+`https://www.acmicpc.net/user/lcs5382`
