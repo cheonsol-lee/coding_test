@@ -1,7 +1,10 @@
+import sys
+sys.setrecursionlimit(10**5)
+
 N, M = map(int, input().split())
 
 data_map = [[0 for i in range(M)] for j in range(N)]
-check_map = [[0 for i in range(M)] for j in range(N)]
+# check_map = [[0 for i in range(M)] for j in range(N)]
 
 for i in range(N):
     data_map[i] = list(map(int, input().split()))
@@ -21,6 +24,9 @@ def dfs(x, y):
             nx = x + dx[i]
             ny = y + dy[i]
 
+            if nx<0 or nx>=N or ny<0 or ny>=M:
+                continue
+            
             dfs(nx, ny)   
         return True
     
@@ -37,11 +43,17 @@ def melt(x, y):
             nx = x + dx[i]
             ny = y + dy[i]
             
+            if nx<0 or nx>=N or ny<0 or ny>=M:
+                continue
+            
             # 주변이 바다라면
             if check_map[nx][ny] == 0:
                 sea_count += 1
-                
-        data_map[x][y] -= sea_count    
+        
+        if (data_map[x][y]-sea_count) >= 0:
+            data_map[x][y] -= sea_count    
+        else:
+            data_map[x][y] = 0 
         
 
 import copy
