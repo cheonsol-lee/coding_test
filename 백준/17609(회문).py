@@ -1,4 +1,3 @@
-
 T = int(input())
 for k in range(T):
     arr = list(input())
@@ -15,7 +14,7 @@ for k in range(T):
                 continue
 
             elif arr[i] != arr[j]:
-=======
+
 import copy
 
 T = int(input())
@@ -53,4 +52,3 @@ for i in range(T):
             print(1)
         else:
             print(2)
->>>>>>> Stashed changes
