@@ -1,4 +1,4 @@
-<<<<<<< Updated upstream
+
 T = int(input())
 for k in range(T):
     arr = list(input())
