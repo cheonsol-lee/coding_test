@@ -35,7 +35,7 @@ def bfs():
     answer = max(answer, cnt)
 
 # 벽 만들기 함수
-def makeWall(cnt):
+def make_wall(cnt):
     # 벽 3개를 지으면 bfs 실행
     if cnt == 3:
         bfs()
@@ -57,5 +57,6 @@ for i in range(n):
     graph.append(list(map(int, input().split())))
 
 answer = 0
-makeWall(0)
+make_wall(0)
 print(answer)
+
