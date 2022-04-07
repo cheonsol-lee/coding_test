@@ -1,31 +1,28 @@
-# https://seongonion.tistory.com/103
-n = int(input())
+N = int(input())
 
-ans = 0
-row = [0] * n
-
+cnt = 0
+row = [0] * N # 행마다 저장되는 퀸의 열 위치
 
 def is_promising(x):
+    # x행보다 적은 행(위쪽 체스판)의 조건 비교
     for i in range(x):
-        if row[x] == row[i] or abs(row[x] - row[i]) == abs(x - i):
+        if row[x] == row[i] or abs(row[x]-row[i]) == x-i:
             return False
-
     return True
 
-
-def n_queens(x):
-    global ans
-    if x == n:
-        ans += 1
+def n_queen(x):
+    global cnt
+    if x == N:
+        cnt += 1
         return
-
     else:
-        for i in range(n):
-            # [x, i]에 퀸을 놓겠다.
+        # x행에 대한 i열 위치에 퀸 저장
+        for i in range(N):
             row[x] = i
+
             if is_promising(x):
-                n_queens(x + 1)
+                n_queen(x + 1)
 
+n_queen(0)
 
-n_queens(0)
-print(ans)
+print(cnt)
