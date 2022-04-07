@@ -1,31 +1,31 @@
-# 참고 : https://youtu.be/z4wKvYdd6wM
-N = int(input())
-col = [0] * (N+1) # 특정 행에 놓인 퀸의 컬럼 번호
-cnt = 0
-def n_queens(col, i):
-    global cnt
-    n = len(col) - 1
+# https://seongonion.tistory.com/103
+n = int(input())
 
-    if promising(col, i):
-        if i == n:
-            cnt += 1
-            # print(col[1: n+1])
-        else:
-            for j in range(1, n+1):
-                col[i + 1] = j
-                n_queens(col, i + 1)
-
-def promising(col, i):
-    k = 1
-    flag = True
-    while k < i and flag:
-        if col[i] == col[k] or abs(col[i] - col[k]) == abs(i-k):
-            flag = False
-        k += 1
-
-    return flag
+ans = 0
+row = [0] * n
 
 
+def is_promising(x):
+    for i in range(x):
+        if row[x] == row[i] or abs(row[x] - row[i]) == abs(x - i):
+            return False
 
-n_queens(col, 0)
-print(cnt)
+    return True
+
+
+def n_queens(x):
+    global ans
+    if x == n:
+        ans += 1
+        return
+
+    else:
+        for i in range(n):
+            # [x, i]에 퀸을 놓겠다.
+            row[x] = i
+            if is_promising(x):
+                n_queens(x + 1)
+
+
+n_queens(0)
+print(ans)
