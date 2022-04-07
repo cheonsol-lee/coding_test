@@ -1,62 +1,59 @@
-# 참조: https://hongcoding.tistory.com/m/130
+N, M = map(int, input().split())
+graph = [list(map(int, input().split())) for i in range(N)]
+
 from collections import deque
 import copy
 
+dr = [1, -1, 0, 0]
+dc = [0, 0, 1, -1]
+
+safe_cnt = 0
+
+# 벽 3개가 설치된 후 진행
 def bfs():
-    queue = deque()
+    global safe_cnt
     tmp_graph = copy.deepcopy(graph)
-    for i in range(n):
-        for j in range(m):
-            # 바이러스인 것을 queue에 넣음
+    queue = deque()
+
+    # 바이러스 위치 모두 큐에 저장
+    for i in range(N):
+        for j in range(M):
             if tmp_graph[i][j] == 2:
-                queue.append((i, j))
+                queue.append((i,j))
 
-    # 바이러스가 퍼질 수 있는 공간은 모두 2로 변경
     while queue:
-        x, y = queue.popleft()
+        r, c = queue.popleft()
 
+        # 상,하,좌,우 탐색
         for i in range(4):
-            nx = x + dx[i]
-            ny = y + dy[i]
+            nr = r + dr[i]
+            nc = c + dc[i]
 
-            if nx < 0 or nx >= n or ny < 0 or ny >= m:
-                continue
-            if tmp_graph[nx][ny] == 0:
-                tmp_graph[nx][ny] = 2
-                queue.append((nx, ny))
+            #  범위내 실행
+            if 0 <= nr < N and 0 <= nc < M:
+                if tmp_graph[nr][nc] == 0:
+                    tmp_graph[nr][nc] = 2 #바이러스 전파
+                    queue.append((nr,nc))
 
-    global answer
     cnt = 0
 
-    # 바이러스가 퍼지지 않은 지역의 개수 세기
-    for i in range(n):
+    # 안전영역 개수
+    for i in range(N):
         cnt += tmp_graph[i].count(0)
 
-    answer = max(answer, cnt)
+    safe_cnt = max(safe_cnt, cnt) # 벽3개를 설치한 조건 중에서 안전영역이 가장 큰 값
 
-# 벽 만들기 함수
 def make_wall(cnt):
-    # 벽 3개를 지으면 bfs 실행
     if cnt == 3:
         bfs()
         return
+    else:
+        for i in range(N):
+            for j in range(M):
+                if graph[i][j] == 0:
+                    graph[i][j] = 1 # 벽 설치
+                    make_wall(cnt + 1)
+                    graph[i][j] = 0 # 벽 해제
 
-    for i in range(n):
-        for j in range(m):
-            if graph[i][j] == 0:
-                graph[i][j] = 1
-                makeWall(cnt+1)
-                graph[i][j] = 0
-
-n, m = map(int, input().split())
-graph = []
-dx = [0, 0, 1, -1]
-dy = [1, -1, 0, 0]
-
-for i in range(n):
-    graph.append(list(map(int, input().split())))
-
-answer = 0
-make_wall(0)
-print(answer)
-
+make_wall(0) # 벽 0개일 떄 실행
+print(safe_cnt)
