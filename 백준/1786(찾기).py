@@ -1,47 +1,48 @@
-T = list(input())
-P = list(input())
+# 참조(코드): https://donghak-dev.tistory.com/60
+# 참조(설명): https://bowbowbow.tistory.com/6
+# 참조(유투브): https://youtu.be/yWWbLrV4PZ8
 
-len_T = len(T)
-len_P = len(P)
 
-arr_loc = []
-cnt = 0
-for i in range(len_T - len_P):
-    if T[i:i+len_P] == P:
-        arr_loc.append(i+1)
-        cnt += 1
+# 실패 테이블 생성 : pattern(찾고자 하는 문자열)
+def make_pi(pattern):
+    pattern_size = len(pattern)
+    pi = [0 for i in range(0, pattern_size)]
 
-print(cnt)
-print(' '.join(map(str, arr_loc)))
+    j = 0
+    for i in range(1, pattern_size):
+        while j > 0 and pattern[i] != pattern[j]:
+            j = pi[j - 1]
 
-# 1번 인덱스부터 사용하므로 0번 인덱스는 '0'으로 채우고 사용안함
-# T.insert(0, '0')
-# P.insert(0, '0')
+        if (pattern[i] == pattern[j]):
+            j += 1
+            pi[i] = j
+    return pi
 
-# # 원소 별로 최대 k값 계산
-# def calculate_k(arr):
-#     arr_k = [0] * (len(arr) + 1)
-#
-#     # 뒤에서부터 하나씩 비교
-#     for j in range(len(arr), 0, -1):
-#         # j의 짝수 여부에 따라 다름
-#         if (j % 2 == 0):
-#             k = j // 2 - 1
-#         else:
-#             k = j // 2
-#
-#         # 큰 수부터 줄여나가면서 최대 k 값 찾음
-#         while k <= (j-k):
-#             if arr[1:k+1] == arr[j-k:j]:
-#                 break
-#             else:
-#                 k -= 1
-#                 continue
-#
-#         # j번째 값에 해당하는 최대 k
-#         arr_k[j] = k
-#
-#     return arr_k
-#
-# arr_k = calculate_k(P)
-# print(arr_k)
+
+def KMP(parent, pattern):
+    pi = make_pi(pattern)
+    parent_size = len(parent)
+    pattern_size = len(pattern)
+    result = []
+    count = 0
+    j = 0
+    for i in range(0, parent_size):
+        while j > 0 and parent[i] != pattern[j]:
+            j = pi[j - 1]
+
+        if parent[i] == pattern[j]:
+            if j == (pattern_size - 1):
+                result.append(i - len(pattern) + 2)
+                count += 1
+                j = pi[j]
+            else:
+                j += 1
+
+    print(count)
+    for element in result:
+        print(element)
+
+
+T = input()
+P = input()
+KMP(T, P)
