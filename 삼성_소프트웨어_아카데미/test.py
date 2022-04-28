@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import sys
 input = sys.stdin.readline
 N = int(input())
@@ -57,3 +58,9 @@ for r in range(N):
             answer += 10 ** (cnt-1)
 
 print(answer)
+=======
+print(round(0.3))
+print(round(-0.7))
+print(round(-0.51))
+print(round(-1.4)) tsetset
+>>>>>>> main
