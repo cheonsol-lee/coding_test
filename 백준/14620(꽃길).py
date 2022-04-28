@@ -55,4 +55,4 @@ def make_seed(cost, cnt):
 
 
 make_seed(0, 0)
-print(min_sum)v
+print(min_sum)
