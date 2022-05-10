@@ -1,4 +1,4 @@
-# 12분 56초
+# 풀이시간 : 12분 56초
 S = 'LILLYBILLYBOO'
 L = ['BILL', 'MARIA', 'LILLY']
 
