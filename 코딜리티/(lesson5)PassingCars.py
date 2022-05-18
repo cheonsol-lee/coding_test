@@ -18,4 +18,3 @@ def solution(A):
 
 A = [0,1,0,1,1]
 print(solution(A))
-
