@@ -8,6 +8,7 @@ def solution(A):
 
     interval = 0  # 열린 원의 수
     intersect = 0 # 겹치는 원의 수
+
     for i, val in enumerate(arr):
         if val[1] == 1:
             interval -= 1
@@ -17,7 +18,7 @@ def solution(A):
             intersect += interval
             interval += 1
 
-    return intersect
+    return intersect if intersect <= 10000000 else -1
 
 A = [1,5,2,1,4,0]
 print(solution(A))
