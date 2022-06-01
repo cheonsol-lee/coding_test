@@ -3,7 +3,7 @@ def solution(A):
     switch = [0] * (len(A) + 1)
     light = [0] * (len(A) + 1)
     light[0] = 1
-    cnt = 0
+    cnt = 0 # 모든 전구가 켜진 사이클 횟수
     confirmed = 0 # 확인 완료된 전구
 
     for a in A:
