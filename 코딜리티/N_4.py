@@ -24,7 +24,7 @@ def solution(A):
             else:
                 sign_arr[i] = '+'
 
-    # 가장 긴 배열 찾기
+    # 가장 긴 배열 찾기 (+,-) 또는 (-,+) 쌍 개수 찾기
     for i in range(0, len(A)-1):
         if sign_arr[i] == '+' and sign_arr[i+1] == '-':
             cnt += 1
