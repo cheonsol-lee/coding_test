@@ -5,7 +5,6 @@ def solution(number, k):
             stack.pop()
             k -= 1
         stack.append(n)
-        print(stack, k)
 
     # 아직 제거되지 못 한 숫자를 뒤에서 삭제
     if k > 0:
